@@ -27,8 +27,12 @@ install:$(LIB_NAME)
 	install --mode=0644 libssd1306.h  $(PERFIX)/include/
 	install --mode=0644 libssd1306.so $(PERFIX)/lib/
 
+uninstall:
+	-rm  $(PERFIX)/include/libssd1306.h
+	-rm  $(PERFIX)/lib/libssd1306.so
+
 $(LIB_NAME):libssd1306.o
 	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) -shared -fPIC
 
-$(DEMO_NAME):demo.o 
+$(DEMO_NAME):demo.o
 	$(CC) $^ -o $@ -lssd1306 -ltftgfx

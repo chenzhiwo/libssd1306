@@ -3,7 +3,8 @@ DEMO_NAME=demo
 PERFIX=/usr
 
 CC=gcc
-CFLAGS=-O0 -Wall
+CFLAGS=-O3 -Wall
+LIB_CFLAGS=$(CFLAGS) -shared -fPIC
 LDFLAGS=-lwiringPi -ltftgfx
 
 .PHONY:clean rebuild exec debug install
@@ -32,7 +33,13 @@ uninstall:
 	-rm  $(PERFIX)/lib/libssd1306.so
 
 $(LIB_NAME):libssd1306.o
-	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) -shared -fPIC
+	$(CC) $^ -o $@ $(LDFLAGS) $(LIB_CFLAGS)
 
 $(DEMO_NAME):demo.o
 	$(CC) $^ -o $@ -lssd1306 -ltftgfx
+	
+
+
+demo.o: demo.c
+libssd1306.o: libssd1306.c libssd1306.h
+	$(CC) -c $< $(LIB_CFLAGS)

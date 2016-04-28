@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <libssd1306.h>
 #include <libtftgfx.h>
+#include <wiringNPi.h>
 
 //84x48的bitmap
 uchar bitmap[] = {
@@ -66,7 +67,8 @@ int main(int argc, char * argv[])
 	 *  初始化ssd1306库，引脚clk, mosi, cs, d/c分别为wiringPi引脚定义的
 	 *  22,23,24,25
 	 *-----------------------------------------------------------------------------*/
-	ssd_init(22, 23, 24, 25);
+//	ssd_init(22, 23, 24, 25);
+	ssd_init(GPIOC(9), GPIOC(10), GPIOC(12), GPIOC(11));
 	ssd_clean();
 	/*-----------------------------------------------------------------------------
 	 *  把ssd1306库包装好的底层函数作为参数来初始化libtftgfx库，初始化以后就可以使用

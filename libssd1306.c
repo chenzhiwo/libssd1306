@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <wiringPi.h>
+#include <wiringNPi.h>
 #include "libssd1306.h"
 
 
@@ -71,7 +71,7 @@ void ssd_write_data(uchar data)
 //初始化显示屏
 void ssd_init( int clk, int mosi, int cs, int dc)
 {
-	wiringPiSetup();
+	wiringNPiSetup();
 	//把传入的引脚参数复制给全局变量，以方便其他函数使用
 	pin_clk = clk;
 	pin_mosi = mosi;

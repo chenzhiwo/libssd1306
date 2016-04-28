@@ -5,7 +5,7 @@ PERFIX=/usr
 CC=gcc
 CFLAGS=-O3 -Wall
 LIB_CFLAGS=$(CFLAGS) -shared -fPIC
-LDFLAGS=-lwiringPi -ltftgfx
+LDFLAGS=-lwiringNPi -ltftgfx
 
 .PHONY:clean rebuild exec debug install
 
